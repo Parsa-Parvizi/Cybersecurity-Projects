@@ -2,18 +2,68 @@ from collections import deque
 from pycipher import Caesar, Vigenere
 
 def caesar_encrypt(text, shift):
+    """
+    Encrypts text using the Caesar Cipher.
+
+    Args:
+        text (str): The text to be encrypted.
+        shift (int): The number of positions to shift the letters.
+
+    Returns:
+        str: The encrypted text.
+    """
     return Caesar(shift).encipher(text)
 
 def caesar_decrypt(text, shift):
+    """
+    Decrypts text using the Caesar Cipher.
+
+    Args:
+        text (str): The text to be decrypted.
+        shift (int): The number of positions to shift the letters.
+
+    Returns:
+        str: The decrypted text.
+    """
     return Caesar(-shift).encipher(text)
 
 def vigenere_encrypt(text, key):
+    """
+    Encrypts text using the Vigenere Cipher.
+
+    Args:
+        text (str): The text to be encrypted.
+        key (str): The encryption key.
+
+    Returns:
+        str: The encrypted text.
+    """
     return Vigenere(key).encipher(text)
 
 def vigenere_decrypt(text, key):
+    """
+    Decrypts text using the Vigenere Cipher.
+
+    Args:
+        text (str): The text to be decrypted.
+        key (str): The encryption key.
+
+    Returns:
+        str: The decrypted text.
+    """
     return Vigenere(key).decipher(text)
 
 def railfence_encrypt(text, rails):
+    """
+    Encrypts text using the Railfence Cipher.
+
+    Args:
+        text (str): The text to be encrypted.
+        rails (int): The number of rails.
+
+    Returns:
+        str: The encrypted text.
+    """
     rail = [[] for _ in range(rails)]
     direction = 1
     row = 0
@@ -32,6 +82,16 @@ def railfence_encrypt(text, rails):
     return result
 
 def railfence_decrypt(text, rails):
+    """
+    Decrypts text using the Railfence Cipher.
+
+    Args:
+        text (str): The text to be decrypted.
+        rails (int): The number of rails.
+
+    Returns:
+        str: The decrypted text.
+    """
     n = len(text)
     rail = [['\n' for _ in range(n)] for _ in range(rails)]
     direction = None
@@ -71,6 +131,10 @@ def railfence_decrypt(text, rails):
     return ''.join(result)
 
 def main():
+    """
+    Main function to run the Text Encryption Tool.
+    Provides a user interface for selecting encryption methods and performing encryption/decryption.
+    """
     print("Welcome to the Text Encryption Tool!")
     while True:
         print("\nChoose an option:")
@@ -125,7 +189,7 @@ def main():
             break
 
         else:
-            print ("Invalid choice. Please select a valid option.")
+            print("Invalid choice. Please select a valid option.")
 
 if __name__ == "__main__":
     main()
