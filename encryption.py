@@ -55,32 +55,45 @@ def vigenere_decrypt(text, key):
 
 def railfence_encrypt(text, rails):
     """
-    Encrypts text using the Railfence Cipher.
+    Encrypts the input text using the Railfence Cipher method.
 
     Args:
-        text (str): The text to be encrypted.
-        rails (int): The number of rails.
+        text (str): The plaintext string to be encrypted.
+        rails (int): The number of rails to use for the encryption.
 
     Returns:
-        str: The encrypted text.
+        str: The encrypted ciphertext.
     """
-    rail = [[] for _ in range(rails)]
-    direction = 1
-    row = 0
+    
+    # Handle edge cases
+    if rails <= 0:
+        raise ValueError("Number of rails must be greater than 0.")
+    if not text:
+        return ""
 
-    for i in range(len(text)):
-        rail[row].append(text[i])
+    # Create a list of empty strings for each rail
+    rail = ['' for _ in range(rails)]
+    direction = 1  # 1 means moving down, -1 means moving up
+    row = 0  # Start at the first rail
+
+    # Iterate through each character in the input text
+    for char in text:
+        # Append the character to the current rail
+        rail[row] += char
+        
+        # Change direction if we hit the top or bottom rail
+        if row == 0:
+            direction = 1  # Move down
+        elif row == rails - 1:
+            direction = -1  # Move up
+        
+        # Move to the next rail
         row += direction
 
-        if row == 0 or row == rails - 1:
-            direction *= -1
-
-    result = ""
-    for row in rail:
-        result += "".join(row)
-
+    # Join all rails to get the final encrypted text
+    result = ''.join(rail)
     return result
-
+    
 def railfence_decrypt(text, rails):
     """
     Decrypts text using the Railfence Cipher.
