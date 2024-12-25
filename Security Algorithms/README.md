@@ -1,4 +1,4 @@
-# Security-Algorithms
+# Text Encryption Using Various Algorithms
 
 # Overview
 The Text Encryption Tool is a command-line application that provides various encryption methods to secure text data. This tool implements three classical encryption algorithms: Caesar Cipher, Vigenere Cipher, and Railfence Cipher. The application is designed to be user-friendly, allowing users to easily encrypt and decrypt messages using these algorithms.
